@@ -1,0 +1,525 @@
+@font-face {
+    font-family: 'Tiltil';
+    src: url('../fonts/Tiltil-Regular.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Zurich';
+    src: url('../fonts/zurich.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'NeuzeItOffice';
+    src: url('../fonts/neuzeitoffice.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  
+  
+  
+  
+  /**************/
+  /* CSS REMEDY */
+  /**************/
+  *, *::after, *::before {
+    box-sizing: border-box;  
+  }
+  
+  
+  
+  
+  
+  /*********************/
+  /* CUSTOM PROPERTIES */
+  /*********************/
+  :root {
+    color-scheme: light dark;
+    --color-black: #111;
+    --color-beige: light-dark(#f1f0ee, #515151);
+    --color-maintext: light-dark (#fff, #111);
+    --color-backgroundlabel: light-dark (#fff, #111);
+    --color-grey-dark: #515151;
+    --color-white: #fff;
+    --font-primary: 'Zurich', sans-serif;
+    --font-heading: 'Tiltil', sans-serif;
+    --font-heading2:'NeuzeItOffice', sans-serif;
+  }
+  
+  
+  /************/
+  /* ALGEMEEN */
+  /************/
+    
+  
+  body {
+    background-color: var(--color-beige);
+    font-family: var(--font-primary);
+    margin: 0; 
+  }
+  
+  a {
+    color: var(--color-maintext);
+    text-decoration: none;
+  }
+  
+  p {
+    color: var(--color-maintext);
+  }
+  
+  h2 {
+    font-family: var(--font-primary);
+    font-size: 2em;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    font-size: 1em;
+  }
+  
+  
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus {
+      outline: none; 
+      border: 2px solid #FF00FF; 
+  }
+  
+  /* Focus-stijl voor links */
+  a:focus {
+      text-decoration: underline; 
+      text-decoration-color: #FF00FF;
+  }
+  
+  
+  /* HEADER */
+  
+  header {
+    background-color: var(--color-black);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  
+  }
+  
+  header h1 {
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+  
+  header p {
+    order: -2;
+    width: 100%;
+    text-align: center;
+    font-size: 0.7rem;
+    text-decoration: underline;
+    color: var(--color-white);
+    white-space: nowrap;
+    animation: slide-in-out 5s ease-in-out infinite;
+  }
+  
+  /* header p animatie voor het sliden bron: https://blog.hubspot.com/website/scrolling-text-css#how-to-create-scrolling-text-css */
+  @keyframes slide-in-out {
+    0% {
+      transform: translateX(100%); /* Begin buiten het scherm aan de rechterkant */
+      opacity: 0;
+    }
+    10% {
+      transform: translateX(0); /* Beweeg naar het midden */
+      opacity: 1; /* Maak zichtbaar */
+    }
+    40% {
+      opacity: 1; /* Blijf zichtbaar */
+    }
+    50% {
+      transform: translateX(0); /* Blijf in het midden */
+      opacity: 1;
+    }
+    90% {
+      transform: translateX(-100%); /* Beweeg naar buiten aan de linkerkant */
+      opacity: 0; /* Maak onzichtbaar */
+    }
+    100% {
+      transform: translateX(-100%); /* Blijf buiten zicht */
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    header p {
+      animation: none;
+    }
+  }
+  
+  
+  header > button:nth-of-type(1) {
+    order: -1;
+    background-color: transparent;
+    border: none;
+    padding: 0.25em;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  header > button:nth-of-type(1) span {
+    background-color: var(--color-white);
+    height: 2px;
+    width: 100%;
+  }
+  
+  header nav:nth-of-type(1) {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-beige);
+    transform: translateX(-100%);
+  }
+  
+  nav.toonMenu {
+    transform: translateX(0); /* Verplaats het menu naar binnen */
+  }
+  
+  header nav li button {
+    cursor: pointer;   
+    border: none;      
+    background-color: transparent; 
+  }
+  
+  nav ul li:last-child button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-black);
+    cursor: pointer;
+    position: absolute;
+    position: static;
+    z-index: 3;
+    size: 2em;
+  }
+  
+  header nav ul li:not(:last-child) button {
+    margin-right: 1.5em;
+  }
+  
+  
+  
+  
+  
+  /* Search bar styling */
+  header search {
+    order: 1;
+    width: 100%; 
+    background-color: #f1f0ee; 
+    padding: 0.5em;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  header search label {
+    display: none; 
+  }
+  
+  header search input {
+    width: 100%; 
+    padding: 0.75em; 
+    background-color: #f1f0ee; 
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    color: var(--color-black); 
+  }
+  
+  header search input::placeholder {
+    color: var(--color-maintext); 
+    text-align: left;
+  }
+  
+  header search button {
+    position: absolute;
+    right: 1em; 
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  header search button img {
+    width: 1.5em;
+    height: auto;
+  }
+  
+  
+  header nav:nth-of-type(2) ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  header nav:nth-of-type(2) img {
+    width:1em;
+  
+  }
+  
+  header nav:nth-of-type(1) {
+    position: fixed;
+    inset: 0;
+    transform: translateX(-100%); /* Menu verborgen */
+    padding: 0.75em;
+    display: flex;
+    flex-direction: column; 
+    z-index: 10; /* Zorg dat het boven andere elementen komt */
+  }
+  
+  header nav:nth-of-type(1) ul {
+    list-style: none; 
+  }
+  
+  header nav:nth-of-type(1) li {
+    width: 100%;
+    border-bottom: 1px solid #111;
+  }
+  
+  header nav:nth-of-type(1) li:last-child {
+    border-bottom: none; /* Geen lijn onder het laatste item */
+  }
+  
+  header nav:nth-of-type(1) a {
+    display: block; 
+    padding: 1em 0; 
+    color: var(--color-black); 
+    text-transform: uppercase; 
+    font-size: 1.2em; 
+  }
+  
+  /* Animatie voor het menu */
+  nav.toonMenu button span:nth-of-type(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  nav.toonMenu button span:nth-of-type(2) {
+    opacity: 0;
+  }
+  
+  nav.toonMenu button span:nth-of-type(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  
+  header nav.toonMenu {
+    transform: translateX(0);
+  }
+  
+  /*footer*/
+  
+  footer {
+    background-color: var(--color-black); 
+  }
+  
+  footer > p:first-of-type {
+    color: var(--color-white);
+    text-transform: uppercase;
+    text-align: left;
+    padding-top: 1em;
+    padding-left: 1em;
+  }
+  
+  
+  /* Social media navigatie */
+  
+  /* Verberg de header visueel, maar laten zien voor screen readers */
+  footer nav:nth-of-type(1) h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  footer nav:nth-of-type(1) ul {
+    padding: 0;
+    padding-left: 1em;
+    list-style-type: none;
+    display: flex;
+    gap: 1em;
+  }
+  
+  footer nav:nth-of-type(1) ul li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  footer nav:nth-of-type(1) a {
+    position: relative;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  footer nav:nth-of-type(1) ul li img {
+    width: 2em;
+    height: auto;
+  }
+  
+  
+  /* Styling voor Help & Info en Over TIL & TIL navigaties in de footer */
+  
+  /* Summary stijl voor beide details elementen */
+  footer nav:nth-of-type(2) details summary,
+  footer nav:nth-of-type(3) details summary {
+    color: var(--color-white);
+    background-color: var(--color-black);
+    font-size: 1.5em;
+    padding-left: 1em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 1.125em;
+    justify-content: space-between;
+    border: none;
+    outline: none;
+  }
+  
+  /* Pijl styling */
+  footer nav:nth-of-type(2) details summary::after,
+  footer nav:nth-of-type(3) details summary::after {
+    content: ">";
+    display: inline-block;
+    font-size: 1em;
+    color: var(--color-white);
+    transition: transform 0.5s;
+  }
+  
+  /* Roteer pijl wanneer details open zijn */
+  footer nav:nth-of-type(2) details[open] summary::after,
+  footer nav:nth-of-type(3) details[open] summary::after {
+    transform: rotate(90deg);
+  }
+  
+  /* Panel (verborgen standaard) */
+  footer nav:nth-of-type(2) details ul,
+  footer nav:nth-of-type(3) details ul {
+    display: none;
+    padding: 0 1.125em;
+    background-color: var(--color-black);
+    list-style-type: none;
+  }
+  
+  /* Panel tonen wanneer details open zijn */
+  footer nav:nth-of-type(2) details[open] ul,
+  footer nav:nth-of-type(3) details[open] ul {
+    display: block;
+  }
+  
+  /* Links in de ul-lijsten */
+  footer nav ul li a {
+    color: var(--color-white);
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.1em;
+  }
+  
+  /* Hover state */
+  footer nav ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  
+  
+  /* onderste section met betaalmogelijkheden en Trustpilot */
+  
+  /* Styling voor de footer sectie */
+  footer section:nth-of-type(1) {
+    background-color: var(--color-beige);
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+  }
+  
+  
+  /* P-stijl */
+  footer section:nth-of-type(1) > p {
+    font-size: 0.875em;
+    margin: 0; 
+    text-align: center;
+    color: var(--color-maintext);
+  }
+  
+  footer section:nth-of-type(1) h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  /* Trustpilot & betaalmogelijkheden sectie styling */
+  footer section:nth-of-type(1) ul:nth-of-type(1),
+  footer section:nth-of-type(1) ul:nth-of-type(2) {
+    display: flex; 
+    justify-content: center; 
+    padding: 0; 
+    list-style: none; 
+    gap: 0.5em;
+  }
+  
+  /* Icoon afbeelding styling */
+  footer section:nth-of-type(1) img {
+    max-width: 3em; 
+    height: auto; 
+  }
+  
+  
+  
+  /* SCHAALBAAR */
+  @media (min-width: 761px) {
+    footer nav {
+        display: inline-block;
+        width: 32%; /* elke nav 32% van de breedte */
+        vertical-align: top; /* op 1 lijn staan */
+    }
+  
+    footer nav:nth-of-type(1),
+    footer nav:nth-of-type(2),
+    footer nav:nth-of-type(3) {
+        width: 32%; /* gelijk over de breedte */
+    }
+  
+    footer p {
+        text-align: center;
+    }
+  }
+  
